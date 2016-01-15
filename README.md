@@ -34,4 +34,13 @@ Aside from these, I added some minor tweaks such as fitting the post image into 
 
 You feedback is required, please go to the [Issues](https://github.com/Seedmanc/Booru-Augmentation-Project/issues) section and make suggestions which features I should add, and what would you like to see.
 
+## Booru mass editor
+Use this script to quickly edit images at websites runing older versions of Gelbooru.
+
+Functionality:
+* It works the best on Gelbooru Beta 0.1.11: what most hostnames (*.example.com) on booru.org use.
+* It sort of works on Gelbooru Beta 0.2.
+* It doesn't work at all on Gelbooru Beta 0.2.0 or Gelbooru Beta 0.2.5.
+
+## See also
 Be sure to check out my other Booru-related userscript project - the [Mass Uploader](https://github.com/Seedmanc/Booru-mass-uploader)
