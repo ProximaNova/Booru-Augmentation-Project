@@ -43,4 +43,4 @@ Functionality:
 * It doesn't work at all on Gelbooru Beta 0.2.0 or Gelbooru Beta 0.2.5.
 
 ## See also
-Be sure to check out my other Booru-related userscript project - the [Mass Uploader](https://github.com/Seedmanc/Booru-mass-uploader)
+* The [Booru Mass Uploader](https://github.com/Seedmanc/Booru-mass-uploader) - be sure to check out my other Booru-related userscript project
