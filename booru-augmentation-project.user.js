@@ -1,4 +1,4 @@
-﻿// ==UserScript==
+// ==UserScript==
 // @name		Booru Augmentation Project
 // @description	Enhance your basic booru experience
 // @version	1.0
