@@ -14,9 +14,9 @@
 /*
 // Enter pressed anywhere = submit forum:
 var insertScript = document.createElement("script");
-var textarea = getElementById("tags")
+var form = getElementById("edit_form")
 insertScript.textContent = "\
-document.textarea.addEventListener(onkeypress, function(e) { \
+document.form.addEventListener(onkeypress, function(e) { \
     if (e.which == 13) { \
         doument.getElementById('edit_form').submit(); \
     } \
