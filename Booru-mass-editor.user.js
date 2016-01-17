@@ -14,9 +14,9 @@
 /*
 // Enter pressed anywhere = submit forum:
 var insertScript = document.createElement("script");
-var form = getElementById("edit_form")
+var textarea = getElementById("tags")
 insertScript.textContent = "\
-document.form.addEventListener(onkeypress, function(e) { \
+document.textarea.addEventListener(onkeypress, function(e) { \
     if (e.which == 13) { \
         doument.getElementById('edit_form').submit(); \
     } \
@@ -24,39 +24,43 @@ document.form.addEventListener(onkeypress, function(e) { \
 document.body.appendChild(insertScript);
 */
 
+var ID = window.location.href.replace(/^.*&id=/g, "").replace(/#$/g, "");
+
 // Replacing and hiding:
 document.body.innerHTML =
 document.body.innerHTML
+.replace(/div style="float\: left; margin\: 1em 0"/g, "div style='float: left;'")
+.replace(/<b>Score<\/b>.*Report post.<\/a>/g, "")
+.replace(/<br \/><p id="note-count">/g, "<p id='note-count'>")
+.replace(/<td>\n.*<br>\n.*<input /g, "<td><div style='height:4px;'></div><input ")
 .replace(/>Next Post</g, "><")
-.replace(/>Previous Post</g, "><")
-.replace(/My Tags<br>/g, "<br>")
 .replace(/Recent Tags<br>\n.*?\n.*?<\/td>/g, "</td>")
-.replace(/0 comment<a href="#" id="ci" onclick="showHideIgnored\(\d{1,},'ci'\); return false;"> \(0 hidden\)<\/a><br><br><br>/g, "")
-.replace(/>Tag History</g, "><")
+.replace(/>Tag History<\/a>/g, ">Tag history</a> &bull; Vote: <a href='#' onclick=\"post_vote('" + ID + "', 'up')\">+</a> <a href='#' onclick=\"post_vote('" + ID+ "', 'down')\">-</a>")
 .replace(/>Note history</g, "><")
 .replace(/>Add note</g, "><")
 .replace(/ \| /g, "")
 .replace(/>Next</g, "><")
 .replace(/>Previous</g, "><")
-.replace(/Posted on \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} by  <a href="index.php\?page=account_profile&amp;uname=.*?">.*?<\/a>/g, "")
+.replace(/Previous Post<br>/g, "<br>")
+.replace(/ id="image" onclick="Note.toggle\(\);" style="margin-right\: 70px;"/g, " id='image' onclick='Note.toggle();' style='max-width:800px; margin-right: 70px; position:relative; top:-7px;'")
+.replace(/<br.*Posted on \d.* by  <a href="index.php\?page=account_profile&amp;uname=.*?">.*?<\/a>/g, "")
 .replace(/>Remove<\/a>/g, ">Remove</a> &bull; ")
-.replace(/>Keep</g, ">Favorite<br><")
+.replace(/>Keep<\/a>/g, ">Favorite</a> &bull; ")
 .replace(/>Edit</g, "><")
 .replace(/<input name="submit" value="Save changes" type="submit">/g, "<input style='position:relative;top:-80px;' name='submit' value='Save changes' type='submit'>")
-.replace(/Don't like these ads\? Want em removed or want to donate to booru.org\? Check out our Patreon!/g, "")
 .replace(/<a href="index.php\?page=post&amp;s=view&amp;id=\d+"><\/a><br>/g, "")
-.replace(/&gt;&gt;Respond/g, "")
 .replace(/Source<br>/g, "")
 .replace(/Title<br>/g, "")
 .replace(/Parent<br>/g, "")
-.replace(/type="radio">Safe/g, "type=\"radio\">Safe (&larr;Rating)")
-.replace(/ type="text">\n		<\/td><\/tr><tr><td>\n		<input name="parent"/g, " type=\"text\"> (&larr;Title)<\/td><\/tr><tr><td><input name=\"parent\"")
-.replace(/ type="text">\n		<\/td><\/tr><tr><td><br>\n		<input name="next_post"/g, " type=\"text\"> (&larr;Parent) (&darr;Source)</td></tr><tr><td><br><input style=\"display: none;\" name=\"next_post\"")
+.replace(/type="radio">Safe/g, "type='radio'>Safe (&larr;Rating)")
+.replace(/ type="text">\n		<\/td><\/tr><tr><td>\n		<input name="parent"/g, " type='text'> (&larr;Title)<\/td><\/tr><tr><td><input name='parent'")
+.replace(/ type="text">\n		<\/td><\/tr><tr><td><br>\n		<input name="next_post"/g, " type='text'> (&larr;Parent) (&darr;Source)</td></tr><tr><td><br><input style='display: none;' name='next_post'")
 .replace(/Rating<br>/g, "<br>")
-.replace(/<strong>Statistics.*\n.*Id.*\n.*Posted.*\n.*By\:/g, "<b>By:</b>")
-.replace(/          Source:.*\n.*Rating.*\n.*Score.*?<br>/g, "")
-.replace(/          Size\: /g, "          <b>Size:</b> ")
-.replace(/">Report post.</g, "\"><");
+.replace(/          Id.*\n/g, "")
+.replace(/          Rating.*\n/g, "")
+.replace(/My Tags<br>/g, "<br>")
+.replace(/0 comment<a href="#" id="ci" onclick="showHideIgnored\(\d{1,},'ci'\); return false;"> \(0 hidden\)<\/a><br><br><br>/g, "")
+.replace(/Don't like these ads\? Want em removed or want to donate to booru.org\? Check out our Patreon!/g, "")
 document.getElementById("previous_post").style.display = "none";
 document.getElementById("next_post").style.display = "none";
 
@@ -70,6 +74,8 @@ document.getElementById("tags").style.position = "relative";
 document.getElementById("tags").style.top = "-55px";
 document.getElementById("my-tags").style.position = "relative";
 document.getElementById("my-tags").style.top = "-72px";
+
+
 
 /* Editing buttons:
 document.getElementById("my-tags").innerHTML =
