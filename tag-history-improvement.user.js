@@ -7,6 +7,23 @@
 // @grant        none
 // ==/UserScript==
 
+// Tag(s) diff(s):
+var tagsOld = document.getElementsByTagName("td")[10].textContent
+              .replace(/^ /g, "").replace(/ $/g, "").split(" ");
+var tagsNew = document.getElementsByTagName("td")[4].textContent
+              .replace(/^ /g, "").replace(/ $/g, "").split(" ");
+var blah = [], diff = [];
+for (i = 0; i < tagsOld.length; i++) {
+    blah[tagsOld[i]] = true;
+}
+for (i = 0; i < tagsNew.length; i++) {
+    if (blah[tagsNew[i]]) {
+        delete tagsNew[i];
+    }
+}
+document.getElementsByTagName("h2")[0].innerHTML =
+tagsNew.join(" ").replace(/^ /g, "").replace(/ $/g, "").split(" ");
+
 for (i = 0; i < 5; i++) {
     document.getElementsByTagName("th")[i].removeAttribute("width");
 }
@@ -63,7 +80,8 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
         } else {
             oldAndNewTagsStyle = "";
         }
-        oldAndNewTags += "<a href='index.php?page=post&s=list&tags=" + oldAndNewTagsArray[j] + "' " + oldAndNewTagsStyle + ">" + oldAndNewTagsArray[j] + "</a> ";
+        oldAndNewTags += "<a href='index.php?page=post&s=list&tags=" + oldAndNewTagsArray[j] +
+        "' " + oldAndNewTagsStyle + ">" + oldAndNewTagsArray[j] + "</a> ";
     }
     document.getElementsByTagName("td")[i + 4].innerHTML = oldAndNewTags;
 
