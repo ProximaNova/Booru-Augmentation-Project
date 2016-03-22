@@ -7,23 +7,6 @@
 // @grant        none
 // ==/UserScript==
 
-// Tag(s) diff(s):
-var tagsOld = document.getElementsByTagName("td")[10].textContent
-              .replace(/^ /g, "").replace(/ $/g, "").split(" ");
-var tagsNew = document.getElementsByTagName("td")[4].textContent
-              .replace(/^ /g, "").replace(/ $/g, "").split(" ");
-var blah = [], diff = [];
-for (i = 0; i < tagsOld.length; i++) {
-    blah[tagsOld[i]] = true;
-}
-for (i = 0; i < tagsNew.length; i++) {
-    if (blah[tagsNew[i]]) {
-        delete tagsNew[i];
-    }
-}
-document.getElementsByTagName("h2")[0].innerHTML =
-tagsNew.join(" ").replace(/^ /g, "").replace(/ $/g, "").split(" ");
-
 for (i = 0; i < 5; i++) {
     document.getElementsByTagName("th")[i].removeAttribute("width");
 }
@@ -54,17 +37,8 @@ document.getElementsByTagName("th")[5].innerHTML = "Undo";
 document.getElementsByTagName("th")[5].style.width = "20px";
 
 document.getElementsByTagName("th")[0].style.width = "1px";
+
 for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
-    
-    // Username(s) link(s):
-    var username = document.getElementsByTagName("td")[i + 3];
-    if (!(username.innerHTML.match("Anonymous"))) {
-        username.innerHTML = "<a href='index.php?page=account_profile&uname=" + 
-        username.innerHTML + "'>" + username.innerHTML + "</a>";
-    } else {
-        username.innerHTML = "<a href='index.php?page=post&s=list&tags=user%3AAnonymous'>Anonymous</a>";
-    }
-    
     // Tag(s) link(s):
     document.getElementsByTagName("td")[i + 4].innerHTML =
     document.getElementsByTagName("td")[i + 4].innerHTML.replace(/^ /g, "").replace(/ $/g, "");
@@ -80,10 +54,38 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
         } else {
             oldAndNewTagsStyle = "";
         }
+//        // Tag(s) diff(s):
+//        var tagsOld = document.getElementsByTagName("td")[i + 10].textContent
+//                     .replace(/^ /g, "").replace(/ $/g, "").split(" ");
+//        var tagsNew = document.getElementsByTagName("td")[i + 4].textContent
+//                      .replace(/^ /g, "").replace(/ $/g, "").split(" ");
+//        var blah = [], diff = [];
+//        for (c = 0; c < tagsOld.length; c++) {
+//            blah[tagsOld[c]] = true;
+//        }
+//        for (c = 0; c < tagsNew.length; c++) {
+//            if (blah[tagsNew[c]]) {
+//                delete tagsNew[c];
+//            }
+//        }
+//        var change = tagsNew.join(" ").replace(/^ /g, "").replace(/ $/g, "").split(" ");
+//        
         oldAndNewTags += "<a href='index.php?page=post&s=list&tags=" + oldAndNewTagsArray[j] +
         "' " + oldAndNewTagsStyle + ">" + oldAndNewTagsArray[j] + "</a> ";
     }
     document.getElementsByTagName("td")[i + 4].innerHTML = oldAndNewTags;
+}
+
+for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
+    
+    // Username(s) link(s):
+    var username = document.getElementsByTagName("td")[i + 3];
+    if (!(username.innerHTML.match("Anonymous"))) {
+        username.innerHTML = "<a href='index.php?page=account_profile&uname=" + 
+        username.innerHTML + "'>" + username.innerHTML + "</a>";
+    } else {
+        username.innerHTML = "<a href='index.php?page=post&s=list&tags=user%3AAnonymous'>Anonymous</a>";
+    }
 
     // Subtraction or addition if = green, else if = red, and else = white:
     if (document.getElementsByTagName("td")[i + 4].innerHTML.match(/ /g).length >
