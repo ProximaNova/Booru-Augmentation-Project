@@ -54,30 +54,36 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
         } else {
             oldAndNewTagsStyle = "";
         }
-//        // Tag(s) diff(s):
-//        var tagsOld = document.getElementsByTagName("td")[i + 10].textContent
-//                     .replace(/^ /g, "").replace(/ $/g, "").split(" ");
-//        var tagsNew = document.getElementsByTagName("td")[i + 4].textContent
-//                      .replace(/^ /g, "").replace(/ $/g, "").split(" ");
-//        var blah = [], diff = [];
-//        for (c = 0; c < tagsOld.length; c++) {
-//            blah[tagsOld[c]] = true;
-//        }
-//        for (c = 0; c < tagsNew.length; c++) {
-//            if (blah[tagsNew[c]]) {
-//                delete tagsNew[c];
-//            }
-//        }
-//        var change = tagsNew.join(" ").replace(/^ /g, "").replace(/ $/g, "").split(" ");
-//        
-        oldAndNewTags += "<a href='index.php?page=post&s=list&tags=" + oldAndNewTagsArray[j] +
+        // Tag(s) diff(s):
+        if (i < document.getElementsByTagName("td").length - 10) {
+            var tagsOld = document.getElementsByTagName("td")[i + 10].innerHTML.replace(/^ /g, "").replace(/ $/g, "").split(" ");
+        }
+        var tagsNew = document.getElementsByTagName("td")[i + 4].innerHTML.replace(/^ /g, "").replace(/ $/g, "").split(" ");
+        var blah = [], diff = [];
+        for (c = 0; c < tagsOld.length; c++) {
+            blah[tagsOld[c]] = true;
+        }
+        for (c = 0; c < tagsNew.length; c++) {
+            if (blah[tagsNew[c]]) {
+                delete tagsNew[c];
+            }
+        }
+        var change = tagsNew.join(" ").replace(/^ /g, "").replace(/ $/g, "").split(" ");
+        for (c = 0; c < change.length; c++) {
+            if (change[c] == oldAndNewTagsArray[j]) {
+                var plus = "+";
+            } else {
+                var plus = "";
+            }
+        }
+        
+        oldAndNewTags += plus + "<a href='index.php?page=post&s=list&tags=" + oldAndNewTagsArray[j] +
         "' " + oldAndNewTagsStyle + ">" + oldAndNewTagsArray[j] + "</a> ";
     }
     document.getElementsByTagName("td")[i + 4].innerHTML = oldAndNewTags;
 }
 
 for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
-    
     // Username(s) link(s):
     var username = document.getElementsByTagName("td")[i + 3];
     if (!(username.innerHTML.match("Anonymous"))) {
