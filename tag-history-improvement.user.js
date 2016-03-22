@@ -29,6 +29,9 @@ for (i = 2; i < document.getElementsByTagName("td").length - 3; i += 6) {
     document.getElementsByTagName("td")[i].innerHTML.replace(/ \d+:\d+:\d+/g, " (" + timeSpecific + ")");
 }
 
+// User:
+document.getElementsByTagName("th")[3].style.width = "35px";
+
 // "Options":
 document.getElementsByTagName("th")[5].innerHTML = "Undo";
 document.getElementsByTagName("th")[5].style.width = "20px";
@@ -38,8 +41,12 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
     
     // Username(s) link(s):
     var username = document.getElementsByTagName("td")[i + 3];
-    username.innerHTML = "<a href='index.php?page=account_profile&uname=" + 
-    username.innerHTML + "'>" + username.innerHTML + "</a>";
+    if (!(username.innerHTML.match("Anonymous"))) {
+        username.innerHTML = "<a href='index.php?page=account_profile&uname=" + 
+        username.innerHTML + "'>" + username.innerHTML + "</a>";
+    } else {
+        username.innerHTML = "<a href='index.php?page=post&s=list&tags=user%3AAnonymous'>Anonymous</a>";
+    }
     
     // Tag(s) link(s):
     document.getElementsByTagName("td")[i + 4].innerHTML =
@@ -56,7 +63,7 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
         } else {
             oldAndNewTagsStyle = "";
         }
-        oldAndNewTags += "<a href='" + oldAndNewTagsArray[j] + "' " + oldAndNewTagsStyle + ">" + oldAndNewTagsArray[j] + "</a> ";
+        oldAndNewTags += "<a href='index.php?page=post&s=list&tags=" + oldAndNewTagsArray[j] + "' " + oldAndNewTagsStyle + ">" + oldAndNewTagsArray[j] + "</a> ";
     }
     document.getElementsByTagName("td")[i + 4].innerHTML = oldAndNewTags;
 
