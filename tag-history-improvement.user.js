@@ -22,7 +22,7 @@ if (postNumberLength.length <= 4) {
 }
 
 // Date:
-document.getElementsByTagName("th")[2].style.width = "150px";
+document.getElementsByTagName("th")[2].style.width = "155px";
 for (i = 2; i < document.getElementsByTagName("td").length - 3; i += 6) {
     var timeSpecific = document.getElementsByTagName("td")[i].innerHTML.match(/\d+:\d+:\d+/g);
     document.getElementsByTagName("td")[i].innerHTML =
@@ -59,7 +59,7 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
             var tagsOld = document.getElementsByTagName("td")[i + 10].innerHTML.replace(/^ /g, "").replace(/ $/g, "").split(" ");
         }
         var tagsNew = document.getElementsByTagName("td")[i + 4].innerHTML.replace(/^ /g, "").replace(/ $/g, "").split(" ");
-        var testArray = [], diff = [];
+        var testArray = [];
         for (c = 0; c < tagsOld.length; c++) {
             testArray[tagsOld[c]] = true;
         }
@@ -74,15 +74,26 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
             testArray2[change[c]] = true;
         }
         var plus = "";
+        var testArray3 = [];
         for (c = 0; c < oldAndNewTagsArray.length; c++) {
             if (testArray2[oldAndNewTagsArray[j]]) {
                 plus = "+";
+                testArray3[oldAndNewTagsArray[j]] = true;
             } else {
                 plus = "";
             }
         }
+        var minus = "";
+        for (c = 0; c < testArray3.length; c++) {
+            if (change[testArray3[c]]) {
+                delete change[c];
+                minus = "-"
+            } else {
+                minus = "";
+            }
+        }
 
-        oldAndNewTags += plus + "<a href='index.php?page=post&s=list&tags=" + escape(oldAndNewTagsArray[j]) +
+        oldAndNewTags += plus + minus + "<a href='index.php?page=post&s=list&tags=" + escape(oldAndNewTagsArray[j]) +
         "' " + oldAndNewTagsStyle + ">" + oldAndNewTagsArray[j] + "</a> ";
     }
     document.getElementsByTagName("td")[i + 4].innerHTML = oldAndNewTags;
