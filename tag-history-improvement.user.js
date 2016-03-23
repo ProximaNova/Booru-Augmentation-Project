@@ -82,7 +82,7 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
             }
         }
 
-        oldAndNewTags += plus + "<a href='index.php?page=post&s=list&tags=" + oldAndNewTagsArray[j] +
+        oldAndNewTags += plus + "<a href='index.php?page=post&s=list&tags=" + escape(oldAndNewTagsArray[j]) +
         "' " + oldAndNewTagsStyle + ">" + oldAndNewTagsArray[j] + "</a> ";
     }
     document.getElementsByTagName("td")[i + 4].innerHTML = oldAndNewTags;
