@@ -87,7 +87,7 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
         for (c = 0; c < testArray3.length; c++) {
             if (change[testArray3[c]]) {
                 delete change[c];
-                minus = "-"
+                minus = "-" + change[c]
             } else {
                 minus = "";
             }
