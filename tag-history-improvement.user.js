@@ -59,6 +59,7 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
             var tagsOld = document.getElementsByTagName("td")[i + 10].innerHTML.replace(/^ /g, "").replace(/ $/g, "").split(" ");
         }
         var tagsNew = document.getElementsByTagName("td")[i + 4].innerHTML.replace(/^ /g, "").replace(/ $/g, "").split(" ");
+        // <Shit needs to go here to not just define tag additions but subtractions>
         var testArray = [];
         for (c = 0; c < tagsOld.length; c++) {
             testArray[tagsOld[c]] = true;
@@ -68,6 +69,7 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
                 delete tagsNew[c];
             }
         }
+        // </Shit needs to go here to not just define tag additions but subtractions>
         var change = tagsNew.join(" ").replace(/^ /g, "").replace(/ $/g, "").split(" ");
         var testArray2 = [];
         for (c = 0; c < change.length; c++) {
