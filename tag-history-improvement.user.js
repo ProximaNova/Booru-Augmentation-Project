@@ -59,24 +59,29 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
             var tagsOld = document.getElementsByTagName("td")[i + 10].innerHTML.replace(/^ /g, "").replace(/ $/g, "").split(" ");
         }
         var tagsNew = document.getElementsByTagName("td")[i + 4].innerHTML.replace(/^ /g, "").replace(/ $/g, "").split(" ");
-        var blah = [], diff = [];
+        var testArray = [], diff = [];
         for (c = 0; c < tagsOld.length; c++) {
-            blah[tagsOld[c]] = true;
+            testArray[tagsOld[c]] = true;
         }
         for (c = 0; c < tagsNew.length; c++) {
-            if (blah[tagsNew[c]]) {
+            if (testArray[tagsNew[c]]) {
                 delete tagsNew[c];
             }
         }
         var change = tagsNew.join(" ").replace(/^ /g, "").replace(/ $/g, "").split(" ");
+        var testArray2 = [];
         for (c = 0; c < change.length; c++) {
-            if (change[c] == oldAndNewTagsArray[j]) {
-                var plus = "+";
+            testArray2[change[c]] = true;
+        }
+        var plus = "";
+        for (c = 0; c < oldAndNewTagsArray.length; c++) {
+            if (testArray2[oldAndNewTagsArray[j]]) {
+                plus = "+";
             } else {
-                var plus = "";
+                plus = "";
             }
         }
-        
+
         oldAndNewTags += plus + "<a href='index.php?page=post&s=list&tags=" + oldAndNewTagsArray[j] +
         "' " + oldAndNewTagsStyle + ">" + oldAndNewTagsArray[j] + "</a> ";
     }
