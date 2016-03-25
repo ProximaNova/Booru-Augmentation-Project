@@ -46,11 +46,17 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
     var oldAndNewTags = "";
     for (j = 0; j < oldAndNewTagsArray.length; j++) {
         if (oldAndNewTagsArray[j].match(/_\(artist\)/g)) {
-            oldAndNewTagsStyle = "style='color:#A00;'";
+            oldAndNewTagsStyle = "style='color:#A00;' \
+                                  onmouseover = \"this.style.color = '#9093ff'\" \
+                                  onmouseout = \"this.style.color = '#A00'\"";
         } else if (oldAndNewTagsArray[j].match(/_\(character\)/g)) {
-            oldAndNewTagsStyle = "style='color:#0A0;'";
+            oldAndNewTagsStyle = "style='color:#0A0;' \
+                                  onmouseover = \"this.style.color = '#9093ff'\" \
+                                  onmouseout = \"this.style.color = '#0A0'\"";
         } else if (oldAndNewTagsArray[j].match(/_\(copyright\)/g)) {
-            oldAndNewTagsStyle = "style='color:#A0A;'";
+            oldAndNewTagsStyle = "style='color:#A0A;' \
+                                  onmouseover = \"this.style.color = '#9093ff'\" \
+                                  onmouseout = \"this.style.color = '#A0A'\"";
         } else {
             oldAndNewTagsStyle = "";
         }
