@@ -35,8 +35,8 @@ for (i = 0; i < document.getElementsByTagName("td").length - 4; i += 3) {
         var coloredTags = "";
     }
     getTd[i].innerHTML = "<a href='index.php?page=post&s=list&tags=" +
-    getTd[i].innerHTML + "'" + coloredTags + ">" +
-    getTd[i].innerHTML + "</a>"
+    getTd[i].innerHTML.toLowerCase() + "'" + coloredTags + ">" +
+    getTd[i].innerHTML.toLowerCase() + "</a>"
 }
 for (i = 1; i < document.getElementsByTagName("td").length - 4; i += 3) {
     if (getTd[i].innerHTML.match(/_\(artist\)/g)) {
@@ -52,6 +52,6 @@ for (i = 1; i < document.getElementsByTagName("td").length - 4; i += 3) {
         var coloredTags = "";
     }
     getTd[i].innerHTML = "<a href='index.php?page=post&s=list&tags=" +
-    getTd[i].innerHTML + "'" + coloredTags + ">" +
-    getTd[i].innerHTML + "</a>"
+    getTd[i].innerHTML.toLowerCase() + "'" + coloredTags + ">" +
+    getTd[i].innerHTML.toLowerCase() + "</a>"
 }
