@@ -85,10 +85,12 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
         var testArray3 = [];
         for (c = 0; c < oldAndNewTagsArray.length; c++) {
             if (testArray2[oldAndNewTagsArray[j]]) {
-                plus = "+";
+                plus = "<big><span style='color:green'>+</span>";
+                var plusLeft = "</big>";
                 testArray3[oldAndNewTagsArray[j]] = true;
             } else {
                 plus = "";
+                var plusLeft = "";
             }
         }
         var minus = "";
@@ -102,7 +104,7 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
         }
 
         oldAndNewTags += plus + minus + "<a href='index.php?page=post&s=list&tags=" + escape(oldAndNewTagsArray[j]) +
-        "' " + oldAndNewTagsStyle + ">" + oldAndNewTagsArray[j] + "</a> ";
+        "' " + oldAndNewTagsStyle + ">" + oldAndNewTagsArray[j] + "</a>" + plusLeft + " ";
     }
     document.getElementsByTagName("td")[i + 4].innerHTML = oldAndNewTags;
 }
