@@ -1,21 +1,21 @@
 // ==UserScript==
-// @name        Alias
+// @name        Alias list improver
 // @namespace   booru
 // @include     http://*.booru.org/index.php?page=alias*
 // @version     1
 // @grant       none
 // ==/UserScript==
 
-document.getElementsByTagName("div")[2].style.color =
-"black";
-document.getElementsByTagName("div")[2].innerHTML =
-"<b>One example:</b> \
+document.getElementsByTagName("div")[2].style.color = "black";
+document.getElementsByTagName("div")[2].innerHTML = "<b>One example:</b> \
 <a href='index.php?page=post&s=list&tags=evangelion' style='color:#A0A' onmouseover=\"this.style.color = \
 '#9093ff'\" onmouseout=\"this.style.color = '#A0A'\">Evangelion</a> is the tag and \
 <a href='index.php?page=post&s=list&tags=neon_genesis_evangelion' style='color:#A0A' onmouseover=\"this.style.color = \
 '#9093ff'\" onmouseout=\"this.style.color = '#A0A'\">Neon_Genesis_Evangelion</a> is the alias.";
-document.getElementsByTagName("th")[2].style.display =
-"none";
+document.getElementsByTagName("table")[0].removeAttribute("style");
+document.getElementsByTagName("th")[0].removeAttribute("width");
+document.getElementsByTagName("th")[1].removeAttribute("width");
+document.getElementsByTagName("th")[2].style.display = "none";
 
 var getTd = document.getElementsByTagName("td");
 for (i = 2; i < getTd.length - 4; i += 3) {
