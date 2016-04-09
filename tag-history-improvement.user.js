@@ -131,3 +131,7 @@ for (i = 0; i < document.getElementsByTagName("td").length; i += 6) {
         document.getElementsByTagName("td")[i].style.backgroundColor = "white";
     }
 }
+
+// To do:
+// Show version number
+// Show/hide colums, for example, as this link can do: https://e621.net/post_tag_history/index?post_id=488046
