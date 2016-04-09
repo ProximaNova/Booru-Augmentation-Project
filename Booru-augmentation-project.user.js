@@ -575,3 +575,4 @@ function togglEdit(that) {
 }
 // todo fix bug when a tag is considered as custom because it shows on an image that's the only one with that tag on the booru
 // todo tag categories
+// todo if page == "You do not have permission to upload, or are not logged in!" then add the login link
