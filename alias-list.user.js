@@ -55,3 +55,5 @@ for (i = 1; i < document.getElementsByTagName("td").length - 4; i += 3) {
     getTd[i].innerHTML.toLowerCase() + "'" + coloredTags + ">" +
     getTd[i].innerHTML.toLowerCase() + "</a>"
 }
+
+// todo maybe something about this: http://forum.booru.org/index.php?action=vthread&forum=2&topic=634
