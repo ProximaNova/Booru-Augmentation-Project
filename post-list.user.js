@@ -1,30 +1,35 @@
 // ==UserScript==
-// @name        post list
-// @namespace   booru
-// @include     http://*.booru.org/index.php?page=post&s=list&tags=*
-// @version     1
-// @grant       none
+// @name         Booru post list improver
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        http://*.booru.org/index.php?page=post&s=list*
+// @match        http://rule34.xxx/index.php?page=post&s=list*
+// @grant        none
 // ==/UserScript==
 
-var linkIds = [];
-for (i = 0; i < document.getElementsByTagName("a").length; i++) {
-    if (document.getElementsByTagName("a")[i].id.match(/^p\d+/g)) {
-        linkIds[i] = document.getElementsByTagName("a")[i].id;
-    }
-}
-var linkIds2 = [];
-for (i = 0; i < linkIds.length; i++) {
-    if (linkIds[i] == "") {
-        linkIds[i].splice(i, 1);
-    } else {
-        linkIds2[linkIds[i]] = linkIds[i];
-    }
-}
-for (x in linkIds2) {
-    var num = Number(linkIds2[x].slice(1));
-    if (posts[num]["tags"].length > 10) {
-        document.getElementById(linkIds2[x]).style.border = "15px solid red";
-    }
-}
+var userID = document.cookie.replace(/user_id=/, "").replace(/; pass_hash.*/, "");
+document.getElementsByTagName("h2")[0].style.display = "inline";
+document.getElementsByTagName("h2")[0].innerHTML += "&emsp;";
+document.getElementsByTagName("li")[1].style.border = "1px dotted";
+document.getElementsByTagName("a")[2].style.margin = "8px";
+document.getElementById("long-notice").style.border = "1px dotted";
+document.getElementById("long-notice").style.position = "relative";
+document.getElementById("long-notice").style.top = "-10px";
+document.getElementById("long-notice").style.height = "25px";
+document.getElementById("long-notice").innerHTML =
+    "<span style='position:relative;top:2px;'><big>&ensp;<a href='index.php?page=post&s=add'>Upload</a>&emsp;" +
+    "<a href='help/posts.php'>Search help</a></big></span>";
+document.getElementById("footer").style.display = "none";
 
-console.log(linkIds2);
+/*
+if (window.location.href.match("&pid=")) {
+   var pageID = Number(window.location.href.replace(/^.*&pid=/, ""));
+} else {
+   var pageID = 0;
+}
+//document.getElementById("paginator").innerHTML = "";
+*/
+
+// todo: pagination links should span the width. 5 image rows: 30 links; 3: 10; etc.
