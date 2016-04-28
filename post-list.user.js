@@ -15,6 +15,11 @@ for (i = 0; i < document.getElementsByTagName("a").length; i++) {
         document.getElementsByTagName("a")[i].href =
             document.getElementsByTagName("a")[i].href.replace(/%26%23039%3B/g, "%27");
     }
+    // fix '"':
+    if (document.getElementsByTagName("a")[i].href.match("%26quot%3B")) {
+        document.getElementsByTagName("a")[i].href =
+            document.getElementsByTagName("a")[i].href.replace(/%26quot%3B/g, "%22");
+    }
 }
 
 var userID = document.cookie.replace(/user_id=/, "").replace(/; pass_hash.*/, "");
