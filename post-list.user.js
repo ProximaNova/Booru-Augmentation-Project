@@ -20,7 +20,17 @@ for (i = 0; i < document.getElementsByTagName("a").length; i++) {
         document.getElementsByTagName("a")[i].href =
             document.getElementsByTagName("a")[i].href.replace(/%26quot%3B/g, "%22");
     }
+    // hide advert
+    if (document.getElementsByTagName("a")[i].href.match("https://www.patreon.com/booru")) {
+        document.getElementsByTagName("a")[i].style.display = "none";
+    }
 }
+// Compact view:
+// Thumbnails currently have 1em between them, the best aesthetics but not the best utility:
+// for (i = 0; i < document.getElementsByClassName("thumb").length; i++) {
+//      document.getElementsByClassName("thumb")[i].style.height = "160px";
+//     document.getElementsByClassName("thumb")[i].style.width = "160px";
+// }
 
 var userID = document.cookie.replace(/user_id=/, "").replace(/; pass_hash.*/, "");
 if (!(window.location.href.match("http://rule34.xxx"))) {
