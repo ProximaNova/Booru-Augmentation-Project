@@ -51,13 +51,43 @@ if (!(window.location.href.match("http://rule34.xxx"))) {
     document.getElementById("top").style.display = "none";
 }
 
-/*
-if (window.location.href.match("&pid=")) {
-   var pageID = Number(window.location.href.replace(/^.*&pid=/, ""));
-} else {
-   var pageID = 0;
-}
+// q - Search
+// Applies to all but the search box:
+document.body.addEventListener("keydown", function(e) {
+    var pagePid = (document.location.href.match("&pid=")) ? true : false;
+    var pageIdBase = document.location.href.replace(/\d+$/g, "");
+    var pageId = Number(document.location.href.match(/\d+$/g));
+    var pageIdNext = pageId + 20;
+    var pageIdPrev = pageId - 20;
+    // 68:d = Next page:
+    if (e.keyCode == 68) {
+        if (pagePid) {
+            document.location.href = pageIdBase + pageIdNext;
+        } else {
+            document.location.href = pageIdBase + "&pid=20";
+        }
+    // 65:a - Previous page:
+    } else if (e.keyCode == 65 && pagePid && pageId !== 0) {
+        document.location.href = pageIdBase + pageIdPrev;
+    // 82:r - Go to random post:
+    } else if (e.keyCode == 82) {
+        document.location.href = document.location.href
+            .replace(/index\.php.*/g, "index.php?page=post&s=random");
+    // Vertically scrolling by 1em per (Google Chrome does 2.1 per) movement:
+    // 87:w - Scroll up:
+    } else if (e.keyCode == 87) {
+        window.scrollBy(0, -16);
+    // 83:s - Scroll down:
+    } else if (e.keyCode == 83) {
+        window.scrollBy(0, 16);
+    }
+});
+
+var pageNum = Number(document.getElementsByTagName("b")[0].innerHTML);
+//if (window.innerWidth >= 1223 && window.innerWidth <= 1336) {
+//    if (pageNum)
+//    document.getElementById("paginator").innerHTML = "";
+//}
 //document.getElementById("paginator").innerHTML = "";
-*/
 
 // todo: pagination links should span the width. 5 image rows: 30 links; 3: 10; etc.
