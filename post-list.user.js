@@ -82,6 +82,7 @@ document.body.addEventListener("keydown", function(e) {
             window.scrollBy(0, 16);
         // 81:q - Search:
         } else if (e.keyCode == 81) {
+            e.preventDefault();
             document.getElementById("tags").focus();
         }
     }
@@ -95,3 +96,5 @@ var pageNum = Number(document.getElementsByTagName("b")[0].innerHTML);
 //document.getElementById("paginator").innerHTML = "";
 
 // todo: pagination links should span the width. 5 image rows: 30 links; 3: 10; etc.
+
+document.getElementsByTagName("br")[6].parentNode.removeChild(document.getElementsByTagName("br")[6]);
