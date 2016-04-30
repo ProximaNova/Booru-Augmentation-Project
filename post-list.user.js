@@ -59,27 +59,29 @@ document.body.addEventListener("keydown", function(e) {
     var pageId = Number(document.location.href.match(/\d+$/g));
     var pageIdNext = pageId + 20;
     var pageIdPrev = pageId - 20;
-    // 68:d = Next page:
-    if (e.keyCode == 68) {
-        if (pagePid) {
-            document.location.href = pageIdBase + pageIdNext;
-        } else {
-            document.location.href = pageIdBase + "&pid=20";
+    if (document.activeElement.id !== "tags") {
+        // 68:d = Next page:
+        if (e.keyCode == 68 && document.getElementsByTagName("img").length == 20) {
+            if (pagePid) {
+                document.location.href = pageIdBase + pageIdNext;
+            } else {
+                document.location.href = pageIdBase + "&pid=20";
+            }
+        // 65:a - Previous page:
+        } else if (e.keyCode == 65 && pagePid && pageId !== 0) {
+            document.location.href = pageIdBase + pageIdPrev;
+        // 82:r - Go to random post:
+        } else if (e.keyCode == 82) {
+            document.location.href = document.location.href
+                .replace(/index\.php.*/g, "index.php?page=post&s=random");
+        // Vertically scrolling by 1em per (Google Chrome does 2.1 per) movement:
+        // 87:w - Scroll up:
+        } else if (e.keyCode == 87) {
+            window.scrollBy(0, -16);
+        // 83:s - Scroll down:
+        } else if (e.keyCode == 83) {
+            window.scrollBy(0, 16);
         }
-    // 65:a - Previous page:
-    } else if (e.keyCode == 65 && pagePid && pageId !== 0) {
-        document.location.href = pageIdBase + pageIdPrev;
-    // 82:r - Go to random post:
-    } else if (e.keyCode == 82) {
-        document.location.href = document.location.href
-            .replace(/index\.php.*/g, "index.php?page=post&s=random");
-    // Vertically scrolling by 1em per (Google Chrome does 2.1 per) movement:
-    // 87:w - Scroll up:
-    } else if (e.keyCode == 87) {
-        window.scrollBy(0, -16);
-    // 83:s - Scroll down:
-    } else if (e.keyCode == 83) {
-        window.scrollBy(0, 16);
     }
 });
 
