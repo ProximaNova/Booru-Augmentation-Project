@@ -51,7 +51,6 @@ if (!(window.location.href.match("http://rule34.xxx"))) {
     document.getElementById("top").style.display = "none";
 }
 
-// q - Search
 // Applies to all but the search box:
 document.body.addEventListener("keydown", function(e) {
     var pagePid = (document.location.href.match("&pid=")) ? true : false;
@@ -81,6 +80,9 @@ document.body.addEventListener("keydown", function(e) {
         // 83:s - Scroll down:
         } else if (e.keyCode == 83) {
             window.scrollBy(0, 16);
+        // 81:q - Search:
+        } else if (e.keyCode == 81) {
+            document.getElementById("tags").focus();
         }
     }
 });
