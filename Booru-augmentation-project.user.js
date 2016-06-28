@@ -578,3 +578,4 @@ function togglEdit(that) {
 // todo if page == "You do not have permission to upload, or are not logged in!" then add the login link
 // todo add preview tag changes and preview comment
 // todo integrate my editor with this one
+// todo add slideshow feature http://forum.booru.org/index.php?action=vthread&forum=1&topic=141
